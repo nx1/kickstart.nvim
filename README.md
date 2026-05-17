@@ -1,3 +1,20 @@
+## Install treesitter-cli
+sudo apt update
+sudo apt install -y build-essential clang libclang-dev curl
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
+cargo install tree-sitter-cli
+
+
+if you're still having issues try this:
+Put path from
+> which tree-sitter
+into:
+~/.config/nvim/init.lua
+vim.env.PATH = vim.fn.expand("$HOME/.cargo/bin:") .. vim.env.PATH
+
+
+
 # kickstart.nvim
 
 ## Introduction
