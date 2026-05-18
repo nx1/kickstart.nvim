@@ -814,3 +814,13 @@ end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
+
+
+-- F12 : Run Python file.
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'python',
+  callback = function()
+    vim.keymap.set('n', '<F12>', ':!python3 %<CR>', { buffer = true, desc = 'Run Python file' })
+  end,
+})
