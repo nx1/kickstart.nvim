@@ -750,7 +750,10 @@ do
     local has_indent_query = vim.treesitter.query.get(language, 'indents') ~= nil
 
     -- Enable treesitter based indentation
-    if has_indent_query then vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" end
+    --
+    if has_indent_query and language ~= 'html' then 
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" 
+    end
   end
 
   local available_parsers = require('nvim-treesitter').get_available()
