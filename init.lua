@@ -11,6 +11,7 @@ do
   vim.o.showmode = false
   vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
 
+
   vim.o.breakindent = true
   vim.o.undofile = true
   vim.o.ignorecase = true
@@ -195,10 +196,11 @@ local function gh(repo) return 'https://github.com/' .. repo end
 
 -- ============================================================
 -- SECTION 3: UI / CORE UX PLUGINS
--- guess-indent, gitsigns, which-key, colorscheme, todo-comments, mini modules
+-- gitsigns, which-key, colorscheme, todo-comments, mini modules
 -- ============================================================
 do
   -- [[ Installing and Configuring Plugins ]]
+
   --
   -- To install a plugin simply call `vim.pack.add` with its git url.
   -- This will download the default branch of the plugin, which will usually be `main` or `master`
@@ -817,5 +819,35 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = 'python',
   callback = function()
     vim.keymap.set('n', '<F12>', ':!python3 %<CR>', { buffer = true, desc = 'Run Python file' })
+  end,
+})
+
+-- Force 2 spaces for TypeScript/Javascript
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+  callback = function()
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.tabstop = 2
+    vim.opt_local.expandtab = true
+  end,
+})
+
+-- Force 4 spaces for Python
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'python',
+  callback = function()
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.tabstop = 4
+    vim.opt_local.expandtab = true
+  end,
+})
+
+-- Force 4 spaces for C/C++
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'c', 'cpp', 'objc', 'objcpp' },
+  callback = function()
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.tabstop = 4
+    vim.opt_local.expandtab = true
   end,
 })
