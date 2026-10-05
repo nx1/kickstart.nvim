@@ -11,6 +11,11 @@ do
   vim.o.showmode = false
   vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
 
+  -- Global default: 4 spaces per tab
+  vim.opt.expandtab = true
+  vim.opt.shiftwidth = 4
+  vim.opt.tabstop = 4
+  vim.opt.softtabstop = 4
 
   vim.o.breakindent = true
   vim.o.undofile = true
